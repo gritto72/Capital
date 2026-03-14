@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Capital Energy — H2S & Air Loop Safety Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800;900&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet"/>
+<style>
+/* ═══ RESET ═══ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:'Barlow',sans-serif;background:#07111a;color:#e8edf2;overflow-x:hidden;}
+img{display:block;max-width:100%;}
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:#061118;}
+::-webkit-scrollbar-thumb{background:#0d8f8f;border-radius:4px;}
+
+/* ═══ TOKENS ═══ */
+:root{
+  --teal:#0d8f8f;--teal-lt:#12b5b5;
+  --navy:#0a1f2e;--navy-dk:#061118;
+  --white:#f0f5f9;--muted:#7fa3bb;
+  --border:rgba(13,143,143,.25);
+  --lt-bg:#f7fafc;--lt-bg2:#edf2f7;--lt-bg3:#ffffff;
+  --lt-text:#0a1f2e;--lt-text2:#3d5a6e;--lt-text3:#6a8a9a;
+  --lt-border:rgba(13,143,143,.18);
+  --sh:0 4px 24px rgba(10,31,46,.08);
+  --sh-h:0 16px 48px rgba(10,31,46,.16);
+}
+
+/* ═══ UTILITIES ═══ */
+.container{max-width:1200px;margin:0 auto;padding:0 2rem;}
+.section{padding:100px 0;}
+.divider{width:56px;height:3px;background:var(--teal);margin:1.4rem 0 2.2rem;}
+.divider-c{width:56px;height:3px;background:var(--teal);margin:1.4rem auto 2.2rem;}
+/* labels */
+.lbl{font-family:'Barlow Condensed',sans-serif;font-size:.74rem;letter-spacing:.28em;text-transform:uppercase;color:var(--teal-lt);margin-bottom:.5rem;}
+.lbl-dk{font-family:'Barlow Condensed',sans-serif;font-size:.74rem;letter-spacing:.28em;text-transform:uppercase;color:var(--teal);margin-bottom:.5rem;}
+/* titles */
+.ttl{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.2rem,5vw,3.8rem);font-weight:800;line-height:1.05;color:var(--white);}
+.ttl span{color:var(--teal-lt);}
+.ttl-dk{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2rem,4vw,3.4rem);font-weight:800;line-height:1.05;color:var(--lt-text);}
+.ttl-dk span{color:var(--teal);}
+/* buttons */
+.btn-p{display:inline-flex;align-items:center;gap:.6rem;background:var(--teal);color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:.95rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.8rem 1.9rem;border:none;cursor:pointer;text-decoration:none;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));transition:background .25s,transform .2s;}
+.btn-p:hover{background:var(--teal-lt);transform:translateY(-2px);}
+.btn-o{display:inline-flex;align-items:center;gap:.6rem;background:transparent;color:var(--teal-lt);font-family:'Barlow Condensed',sans-serif;font-size:.95rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.75rem 1.9rem;border:1.5px solid var(--teal);cursor:pointer;text-decoration:none;transition:all .25s;}
+.btn-o:hover{background:var(--teal);color:#fff;}
+.btn-dk{display:inline-flex;align-items:center;gap:.55rem;background:var(--teal);color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:.9rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.75rem 1.7rem;border:none;cursor:pointer;text-decoration:none;clip-path:polygon(0 0,calc(100% - 11px) 0,100% 11px,100% 100%,11px 100%,0 calc(100% - 11px));transition:all .25s;}
+.btn-dk:hover{background:#0a7070;transform:translateY(-2px);}
+.btn-w{display:inline-flex;align-items:center;gap:.55rem;background:#fff;color:var(--teal);font-family:'Barlow Condensed',sans-serif;font-size:.95rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.85rem 2rem;text-decoration:none;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));transition:all .25s;white-space:nowrap;}
+.btn-w:hover{background:var(--navy-dk);color:#fff;}
+
+/* ═══ SCROLL ANIMATIONS — universal (mobile + desktop) ═══ */
+.rv{opacity:0;transform:translateY(50px);transition:opacity .75s cubic-bezier(.22,1,.36,1),transform .75s cubic-bezier(.22,1,.36,1);will-change:transform,opacity;}
+.rv.on{opacity:1;transform:translateY(0);}
+.rl{opacity:0;transform:translateX(-65px);transition:opacity .75s .06s cubic-bezier(.22,1,.36,1),transform .75s .06s cubic-bezier(.22,1,.36,1);will-change:transform,opacity;}
+.rl.on{opacity:1;transform:translateX(0);}
+.rr{opacity:0;transform:translateX(65px);transition:opacity .75s .06s cubic-bezier(.22,1,.36,1),transform .75s .06s cubic-bezier(.22,1,.36,1);will-change:transform,opacity;}
+.rr.on{opacity:1;transform:translateX(0);}
+.rtl{opacity:0;transform:translate(-65px,-50px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1);will-change:transform,opacity;}
+.rtl.on{opacity:1;transform:translate(0,0);}
+.rtr{opacity:0;transform:translate(65px,-50px);transition:opacity .8s .1s cubic-bezier(.22,1,.36,1),transform .8s .1s cubic-bezier(.22,1,.36,1);will-change:transform,opacity;}
+.rtr.on{opacity:1;transform:translate(0,0);}
+.rbl{opacity:0;transform:translate(-65px,50px);transition:opacity .8s .15s cubic-bezier(.22,1,.36,1),transform .8s .15s cubic-bezier(.22,1,.36,1);will-change:transform,opacity;}
+.rbl.on{opacity:1;transform:translate(0,0);}
+.rbr{opacity:0;transform:translate(65px,50px);transition:opacity .8s .2s cubic-bezier(.22,1,.36,1),transform .8s .2s cubic-bezier(.22,1,.36,1);will-change:transform,opacity;}
+.rbr.on{opacity:1;transform:translate(0,0);}
+.rz{opacity:0;transform:scale(.87);transition:opacity .85s cubic-bezier(.22,1,.36,1),transform .85s cubic-bezier(.22,1,.36,1);will-change:transform,opacity;}
+.rz.on{opacity:1;transform:scale(1);}
+/* showcase directional */
+.sfl{opacity:0;transform:translateX(-85px);transition:opacity .75s cubic-bezier(.22,1,.36,1),transform .75s cubic-bezier(.22,1,.36,1);will-change:transform,opacity;}
+.sfb{opacity:0;transform:translateY(85px);transition:opacity .75s .12s cubic-bezier(.22,1,.36,1),transform .75s .12s cubic-bezier(.22,1,.36,1);will-change:transform,opacity;}
+.sfr{opacity:0;transform:translateX(85px);transition:opacity .75s .22s cubic-bezier(.22,1,.36,1),transform .75s .22s cubic-bezier(.22,1,.36,1);will-change:transform,opacity;}
+.sfl.on,.sfb.on,.sfr.on{opacity:1;transform:translate(0);}
+/* delays */
+.d1{transition-delay:.1s!important;}.d2{transition-delay:.2s!important;}
+.d3{transition-delay:.3s!important;}.d4{transition-delay:.4s!important;}
+.d5{transition-delay:.5s!important;}.d6{transition-delay:.6s!important;}
+
+/* ═══ NAVBAR ═══ */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 2.5rem;transition:background .4s,padding .4s,box-shadow .4s;}
+.navbar.scrolled{background:rgba(6,17,24,.97);padding:.8rem 2.5rem;box-shadow:0 2px 40px rgba(0,0,0,.5);border-bottom:1px solid var(--border);}
+.nav-logo{display:flex;align-items:center;gap:.75rem;text-decoration:none;}
+.nav-logo-icon{width:42px;height:42px;background:var(--teal);clip-path:polygon(50% 0%,90% 25%,100% 75%,60% 100%,0% 75%,10% 25%);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;color:#fff;flex-shrink:0;}
+.nav-logo-text{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.3rem;letter-spacing:.12em;text-transform:uppercase;color:var(--white);line-height:1;}
+.nav-logo-text small{display:block;font-size:.58rem;font-weight:400;letter-spacing:.25em;color:var(--teal-lt);margin-top:2px;}
+.nav-links{display:flex;align-items:center;gap:2.5rem;list-style:none;}
+.nav-links a{font-family:'Barlow Condensed',sans-serif;font-size:.93rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(240,245,249,.75);text-decoration:none;position:relative;transition:color .25s;}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--teal-lt);transition:width .3s;}
+.nav-links a:hover{color:var(--white);}
+.nav-links a:hover::after{width:100%;}
+.nav-cta{font-family:'Barlow Condensed',sans-serif;font-size:.85rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;text-decoration:none;background:var(--teal);padding:.55rem 1.4rem;transition:background .25s;}
+.nav-cta:hover{background:var(--teal-lt);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem;}
+.hamburger span{display:block;width:24px;height:2px;background:var(--white);transition:all .3s;}
+
+/* ═══ HERO ═══ */
+.hero{position:relative;height:100vh;min-height:640px;display:flex;align-items:flex-end;overflow:hidden;}
+.hero-media{position:absolute;inset:0;overflow:hidden;background:#061118;}
+.hero-media video,.hero-media img{width:100%;height:100%;object-fit:cover;transform-origin:center;will-change:transform;}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,17,24,1) 0%,rgba(6,17,24,.55) 40%,rgba(6,17,24,.12) 100%);}
+.hero-content{position:relative;z-index:2;padding:0 4rem 7rem;max-width:800px;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.75rem;font-family:'Barlow Condensed',sans-serif;font-size:.77rem;letter-spacing:.3em;text-transform:uppercase;color:var(--teal-lt);margin-bottom:1.5rem;opacity:0;animation:fadeUp .8s .3s forwards;}
+.hero-eyebrow::before{content:'';display:inline-block;width:32px;height:1px;background:var(--teal-lt);}
+.hero-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(3rem,8vw,6.5rem);font-weight:800;line-height:.97;text-transform:uppercase;color:var(--white);opacity:0;animation:fadeUp .9s .5s forwards;}
+.hero-title em{color:var(--teal-lt);font-style:normal;display:block;}
+.hero-sub{margin:2rem 0 2.5rem;font-size:1.05rem;font-weight:300;line-height:1.7;color:rgba(240,245,249,.75);max-width:520px;opacity:0;animation:fadeUp .9s .7s forwards;}
+.hero-actions{display:flex;flex-wrap:wrap;gap:1rem;opacity:0;animation:fadeUp .9s .9s forwards;}
+.hero-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:.4rem;font-family:'Barlow Condensed',sans-serif;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);animation:bounce 2s 1.5s infinite;text-decoration:none;}
+.hero-scroll svg{width:20px;height:20px;stroke:var(--teal);}
+
+/* ═══ TICKER ═══ */
+.ticker{background:var(--teal);padding:.65rem 0;overflow:hidden;white-space:nowrap;}
+.ticker-inner{display:inline-flex;animation:ticker 30s linear infinite;}
+.ticker-item{font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.9);padding:0 2.5rem;display:inline-flex;align-items:center;}
+.ticker-item::after{content:'✦';color:rgba(255,255,255,.4);font-size:.6rem;margin-left:2.5rem;}
+
+/* ═══ OVERVIEW (dark) ═══ */
+.overview{background:var(--navy-dk);position:relative;overflow:hidden;}
+.overview::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(13,143,143,.07) 0%,transparent 70%);pointer-events:none;}
+.ov-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.ov-img{position:relative;}
+.ov-img-box{width:100%;aspect-ratio:4/5;position:relative;overflow:hidden;}
+.ov-img-box img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.22,1,.36,1);}
+.ov-img-box:hover img{transform:scale(1.05);}
+.ov-badge{position:absolute;bottom:-1.5rem;right:-1.5rem;width:140px;height:140px;background:var(--teal);display:flex;flex-direction:column;align-items:center;justify-content:center;clip-path:polygon(50% 0%,90% 25%,100% 75%,60% 100%,0% 75%,10% 25%);z-index:2;}
+.ov-badge strong{font-family:'Barlow Condensed',sans-serif;font-size:2.6rem;font-weight:800;line-height:1;color:#fff;}
+.ov-badge span{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.85);text-align:center;padding:0 .5rem;}
+.ov-text p{font-size:.98rem;font-weight:300;line-height:1.82;color:rgba(240,245,249,.75);margin-bottom:1.2rem;}
+.ov-feat{display:flex;align-items:flex-start;gap:1rem;padding:1.15rem 1.4rem;background:rgba(13,143,143,.06);border-left:3px solid var(--teal);margin-bottom:.9rem;transition:background .25s;}
+.ov-feat:hover{background:rgba(13,143,143,.12);}
+.ov-feat-ico{width:38px;height:38px;flex-shrink:0;background:rgba(13,143,143,.15);display:flex;align-items:center;justify-content:center;font-size:1.1rem;}
+.ov-feat h4{font-family:'Barlow Condensed',sans-serif;font-size:.95rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--white);margin-bottom:.18rem;}
+.ov-feat p{font-size:.86rem;color:var(--muted);margin:0;}
+
+/* ═══ STATS (teal) ═══ */
+.stats{background:var(--teal);padding:4rem 0;position:relative;overflow:hidden;}
+.stats::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.04) 0,rgba(255,255,255,.04) 1px,transparent 1px,transparent 80px);}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.15);}
+.stat-item{padding:2.5rem 2rem;background:var(--teal);text-align:center;transition:background .25s;}
+.stat-item:hover{background:rgba(10,110,110,.85);}
+.stat-num{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:800;line-height:1;color:#fff;}
+.stat-unit{font-size:1.5rem;font-weight:400;opacity:.7;}
+.stat-label{font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.8);margin-top:.5rem;}
+
+/* ═══ DARK→LIGHT BRIDGE ═══ */
+.bridge{height:56px;background:linear-gradient(to bottom,var(--teal) 0%,var(--lt-bg3) 100%);}
+
+/* ═══ SERVICES (light — AFAQ layout) ═══ */
+.svc-section{background:var(--lt-bg3);padding:100px 0;}
+.svc-layout{display:grid;grid-template-columns:1fr 1.55fr;gap:5rem;align-items:start;}
+.svc-left{position:sticky;top:110px;}
+.svc-left .intro{font-size:.97rem;line-height:1.82;color:var(--lt-text2);margin-bottom:2rem;max-width:370px;}
+.svc-items{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--lt-border);}
+.svc-item{display:flex;align-items:flex-start;gap:.9rem;padding:1.55rem 1.4rem;background:#fff;border-bottom:1px solid var(--lt-border);border-right:1px solid var(--lt-border);transition:background .25s;}
+.svc-item:nth-child(even){border-right:none;}
+.svc-item:nth-last-child(1),.svc-item:nth-last-child(2){border-bottom:none;}
+.svc-item:hover{background:rgba(13,143,143,.04);box-shadow:inset 3px 0 0 var(--teal);}
+.svc-ico{width:44px;height:44px;flex-shrink:0;background:rgba(13,143,143,.1);display:flex;align-items:center;justify-content:center;font-size:1.2rem;transition:background .25s;}
+.svc-item:hover .svc-ico{background:rgba(13,143,143,.2);}
+.svc-item h4{font-family:'Barlow Condensed',sans-serif;font-size:.95rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--lt-text);margin-bottom:.3rem;}
+.svc-item p{font-size:.83rem;line-height:1.6;color:var(--lt-text3);margin:0;}
+
+/* ═══ OPERATIONS (light — inward animations) ═══ */
+.ops-section{background:var(--lt-bg);padding:100px 0;position:relative;overflow:hidden;}
+.ops-section::after{content:'OPERATIONS';position:absolute;right:-2rem;top:50%;transform:translateY(-50%);font-family:'Barlow Condensed',sans-serif;font-size:10rem;font-weight:900;color:rgba(13,143,143,.04);white-space:nowrap;pointer-events:none;user-select:none;}
+.ops-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.ops-text p{font-size:.95rem;line-height:1.82;color:var(--lt-text2);margin-bottom:2rem;}
+.op-items{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.op-card{padding:1.5rem;background:#fff;border:1px solid var(--lt-border);border-bottom:3px solid transparent;transition:all .35s;cursor:default;}
+.op-card:hover{border-bottom-color:var(--teal);transform:translateY(-4px);box-shadow:var(--sh-h);}
+.op-card-ico{font-size:1.75rem;margin-bottom:.7rem;}
+.op-card h4{font-family:'Barlow Condensed',sans-serif;font-size:.95rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--lt-text);}
+.ops-img-wrap{position:relative;}
+.ops-img-box{width:100%;aspect-ratio:1/1;overflow:hidden;position:relative;}
+.ops-img-box img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.22,1,.36,1);}
+.ops-img-box:hover img{transform:scale(1.06);}
+.ops-ring{position:absolute;top:-30px;right:-30px;width:200px;height:200px;border:1px solid rgba(13,143,143,.22);border-radius:50%;pointer-events:none;animation:spin 25s linear infinite;}
+.ops-ring::before{content:'';position:absolute;top:-1px;left:50%;width:8px;height:8px;background:var(--teal);border-radius:50%;transform:translate(-50%,-50%);}
+
+/* ═══ ADVANTAGE — ORBITAL TIMELINE ═══ */
+.adv-section{background:var(--lt-bg3);padding:100px 0;overflow:hidden;}
+.adv-head{text-align:center;margin-bottom:2.5rem;}
+.adv-head .sub{max-width:520px;margin:.8rem auto 0;font-size:.93rem;line-height:1.72;color:var(--lt-text2);}
+
+/* orbital stage */
+.orb-outer{position:relative;width:100%;height:520px;display:flex;align-items:center;justify-content:center;}
+.orb-stage{position:relative;width:460px;height:460px;flex-shrink:0;}
+.orb-r1,.orb-r2{position:absolute;top:50%;left:50%;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;}
+.orb-r1{width:380px;height:380px;border:1px solid rgba(13,143,143,.14);}
+.orb-r2{width:260px;height:260px;border:1px dashed rgba(13,143,143,.1);}
+.orb-pulse{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:92px;height:92px;clip-path:polygon(50% 0%,90% 25%,100% 75%,60% 100%,0% 75%,10% 25%);background:rgba(13,143,143,.12);animation:orbPulse 2.2s ease-in-out infinite;pointer-events:none;}
+.orb-hub{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:76px;height:76px;background:var(--teal);clip-path:polygon(50% 0%,90% 25%,100% 75%,60% 100%,0% 75%,10% 25%);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10;cursor:pointer;transition:background .25s;}
+.orb-hub:hover{background:var(--teal-lt);}
+.orb-hub span{font-family:'Barlow Condensed',sans-serif;font-size:1.15rem;font-weight:800;color:#fff;line-height:1;}
+.orb-hub small{font-size:.48rem;letter-spacing:.12em;color:rgba(255,255,255,.7);text-transform:uppercase;}
+.orb-node{position:absolute;top:50%;left:50%;cursor:pointer;transition:transform .65s cubic-bezier(.22,1,.36,1),opacity .4s;z-index:5;}
+.orb-dot{width:50px;height:50px;background:#fff;border:2px solid rgba(13,143,143,.25);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.25rem;transition:all .3s;box-shadow:0 2px 14px rgba(10,31,46,.1);}
+.orb-node.act .orb-dot{background:var(--teal);border-color:var(--teal);box-shadow:0 0 0 8px rgba(13,143,143,.14);}
+.orb-lbl{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);font-family:'Barlow Condensed',sans-serif;font-size:.74rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--lt-text);white-space:nowrap;transition:color .3s;}
+.orb-node.act .orb-lbl{color:var(--teal);}
+
+/* info panel */
+.orb-info{position:absolute;right:0;top:50%;transform:translateY(-50%) translateX(18px);width:275px;background:#fff;border:1px solid var(--lt-border);box-shadow:var(--sh-h);padding:1.75rem;opacity:0;pointer-events:none;transition:opacity .4s,transform .4s;}
+.orb-info.act{opacity:1;pointer-events:all;transform:translateY(-50%) translateX(0);}
+.orb-info::before{content:'';position:absolute;left:-8px;top:50%;transform:translateY(-50%);width:0;height:0;border-top:8px solid transparent;border-bottom:8px solid transparent;border-right:8px solid #fff;}
+.orb-info-title{font-family:'Barlow Condensed',sans-serif;font-size:1.25rem;font-weight:800;text-transform:uppercase;color:var(--lt-text);margin-bottom:.5rem;}
+.orb-info-bar{width:38px;height:3px;background:var(--teal);margin-bottom:.9rem;}
+.orb-info-desc{font-size:.88rem;line-height:1.72;color:var(--lt-text2);}
+.orb-close{position:absolute;top:.75rem;right:.75rem;width:22px;height:22px;background:none;border:none;cursor:pointer;color:var(--lt-text3);font-size:.9rem;display:flex;align-items:center;justify-content:center;}
+
+/* mobile fallback */
+.orb-mob{display:none;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:2rem;}
+.orb-mob-card{background:#fff;border:1px solid var(--lt-border);padding:1.7rem 1.5rem;transition:all .35s;}
+.orb-mob-card:hover{box-shadow:var(--sh-h);transform:translateY(-4px);border-color:var(--teal);}
+.orb-mob-ico{width:50px;height:50px;background:rgba(13,143,143,.1);display:flex;align-items:center;justify-content:center;font-size:1.35rem;margin-bottom:1rem;}
+.orb-mob-card h4{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--lt-text);margin-bottom:.45rem;}
+.orb-mob-card p{font-size:.86rem;line-height:1.65;color:var(--lt-text2);}
+
+/* ═══ HSE — TEAM SHOWCASE ═══ */
+.hse-section{background:var(--lt-bg);padding:100px 0;}
+.hse-head{text-align:center;margin-bottom:4rem;}
+.hse-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.sc-card{background:#fff;overflow:hidden;position:relative;transition:box-shadow .4s,transform .4s;cursor:default;}
+.sc-card:hover{box-shadow:var(--sh-h);transform:translateY(-8px);}
+.sc-top{height:145px;background:linear-gradient(135deg,rgba(13,143,143,.07) 0%,rgba(13,143,143,.17) 100%);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;transition:background .35s;}
+.sc-card:hover .sc-top{background:linear-gradient(135deg,rgba(13,143,143,.13) 0%,rgba(13,143,143,.26) 100%);}
+.sc-ico{font-size:2.75rem;transition:transform .5s cubic-bezier(.34,1.56,.64,1);}
+.sc-card:hover .sc-ico{transform:scale(1.18) rotate(-5deg);}
+.sc-top::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--teal);transform:scaleX(0);transition:transform .4s cubic-bezier(.22,1,.36,1);}
+.sc-card:hover .sc-top::after{transform:scaleX(1);}
+.sc-body{padding:1.5rem 1.7rem 1.9rem;}
+.sc-card h3{font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--lt-text);margin-bottom:.45rem;}
+.sc-card p{font-size:.86rem;line-height:1.7;color:var(--lt-text2);}
+
+/* ═══ PRODUCTS (light) ═══ */
+.prod-section{background:var(--lt-bg3);padding:100px 0;}
+.prod-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3rem;flex-wrap:wrap;gap:1rem;}
+.prod-scroll{display:flex;gap:1.5rem;overflow-x:auto;padding-bottom:1rem;scrollbar-width:thin;scrollbar-color:var(--teal) transparent;}
+.prod-card{flex:0 0 280px;background:#fff;border:1px solid var(--lt-border);transition:all .35s;}
+.prod-card:hover{border-color:var(--teal);transform:translateY(-6px);box-shadow:var(--sh-h);}
+.prod-card-img{width:100%;aspect-ratio:16/9;overflow:hidden;background:var(--lt-bg2);}
+.prod-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.22,1,.36,1);}
+.prod-card:hover .prod-card-img img{transform:scale(1.08);}
+.prod-card-body{padding:1.35rem 1.5rem 1.7rem;}
+.prod-card h3{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--lt-text);margin-bottom:.38rem;}
+.prod-card p{font-size:.84rem;color:var(--lt-text3);line-height:1.62;}
+
+/* ═══ CTA BAND ═══ */
+.cta-band{padding:80px 0;background:var(--teal);position:relative;overflow:hidden;}
+.cta-band::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(-45deg,rgba(255,255,255,.03) 0,rgba(255,255,255,.03) 1px,transparent 1px,transparent 20px);}
+.cta-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:2rem;position:relative;z-index:1;}
+.cta-inner h2{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:800;line-height:1.1;text-transform:uppercase;color:#fff;}
+.cta-inner p{color:rgba(255,255,255,.8);font-size:1rem;margin-top:.35rem;}
+
+/* ═══ CONTACT (light) ═══ */
+.contact-section{background:var(--lt-bg);padding:100px 0;}
+.contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:5rem;align-items:start;}
+.contact-left p{font-size:.95rem;color:var(--lt-text2);line-height:1.72;margin-bottom:1.8rem;}
+.c-detail{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1.2rem;}
+.c-ico{width:40px;height:40px;flex-shrink:0;background:rgba(13,143,143,.1);border:1px solid rgba(13,143,143,.22);display:flex;align-items:center;justify-content:center;font-size:1rem;}
+.c-detail h4{font-family:'Barlow Condensed',sans-serif;font-size:.73rem;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);margin-bottom:.18rem;}
+.c-detail p{font-size:.88rem;color:var(--lt-text2);margin:0;line-height:1.5;}
+.c-map{width:100%;height:190px;background:var(--lt-bg2);border:1px dashed var(--lt-border);display:flex;align-items:center;justify-content:center;margin-top:1.8rem;font-family:'Barlow Condensed',sans-serif;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--lt-text3);}
+.c-form{display:flex;flex-direction:column;gap:1rem;}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.f-grp{display:flex;flex-direction:column;gap:.38rem;}
+.f-grp label{font-family:'Barlow Condensed',sans-serif;font-size:.73rem;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);}
+.f-grp input,.f-grp select,.f-grp textarea{background:#fff;border:1px solid var(--lt-border);color:var(--lt-text);font-family:'Barlow',sans-serif;font-size:.93rem;font-weight:300;padding:.82rem 1rem;outline:none;transition:border-color .25s,box-shadow .25s;resize:none;}
+.f-grp input::placeholder,.f-grp textarea::placeholder{color:var(--lt-text3);}
+.f-grp input:focus,.f-grp select:focus,.f-grp textarea:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(13,143,143,.1);}
+.f-grp select{appearance:none;cursor:pointer;}
+
+/* ═══ FOOTER ═══ */
+footer{background:#040d12;border-top:1px solid var(--border);padding:60px 0 0;}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid var(--border);}
+.foot-brand p{font-size:.88rem;font-weight:300;color:var(--muted);line-height:1.7;margin:1.25rem 0 2rem;}
+.foot-soc{display:flex;gap:.7rem;}
+.foot-soc a{width:36px;height:36px;background:rgba(13,143,143,.1);border:1px solid rgba(13,143,143,.2);display:flex;align-items:center;justify-content:center;color:var(--teal-lt);font-size:.78rem;text-decoration:none;transition:all .25s;}
+.foot-soc a:hover{background:var(--teal);color:#fff;border-color:var(--teal);}
+.foot-col h4{font-family:'Barlow Condensed',sans-serif;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--teal-lt);margin-bottom:1.2rem;}
+.foot-col ul{list-style:none;}
+.foot-col ul li{margin-bottom:.65rem;}
+.foot-col ul li a{font-size:.87rem;color:var(--muted);text-decoration:none;transition:color .2s;display:flex;align-items:center;gap:.5rem;}
+.foot-col ul li a::before{content:'▶';font-size:.44rem;color:var(--teal);flex-shrink:0;}
+.foot-col ul li a:hover{color:var(--white);}
+.foot-nl{font-size:.87rem;color:var(--muted);line-height:1.6;margin-bottom:1rem;}
+.nl-form{display:flex;}
+.nl-form input{flex:1;background:rgba(13,143,143,.07);border:1px solid rgba(13,143,143,.2);border-right:none;padding:.68rem 1rem;color:var(--white);font-family:'Barlow',sans-serif;font-size:.87rem;outline:none;}
+.nl-form input::placeholder{color:rgba(127,163,187,.4);}
+.nl-form button{background:var(--teal);border:none;cursor:pointer;padding:.68rem 1.1rem;color:#fff;font-size:1rem;transition:background .25s;}
+.nl-form button:hover{background:var(--teal-lt);}
+.foot-bot{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 0;font-size:.78rem;color:rgba(127,163,187,.5);flex-wrap:wrap;gap:.5rem;}
+.foot-bot a{color:var(--teal-lt);text-decoration:none;}
+
+/* ═══ KEYFRAMES ═══ */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(8px);}}
+@keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+@keyframes spin{from{transform:rotate(0);}to{transform:rotate(360deg);}}
+@keyframes orbPulse{0%,100%{opacity:.55;transform:translate(-50%,-50%) scale(1);}50%{opacity:.15;transform:translate(-50%,-50%) scale(1.35);}}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:900px){
+  .nav-links,.nav-cta{display:none;}
+  .hamburger{display:flex;}
+  .ov-grid,.ops-grid,.contact-grid{grid-template-columns:1fr;gap:3rem;}
+  .stats-grid{grid-template-columns:repeat(2,1fr);}
+  .svc-layout{grid-template-columns:1fr;}
+  .svc-left{position:static;}
+  .svc-items{grid-template-columns:1fr;}
+  .svc-item:nth-child(odd),.svc-item:nth-child(even){border-right:none;}
+  .svc-item:nth-last-child(1){border-bottom:none;}
+  .svc-item:nth-last-child(2){border-bottom:1px solid var(--lt-border);}
+  .hse-grid{grid-template-columns:1fr 1fr;}
+  .foot-grid{grid-template-columns:1fr 1fr;}
+  .hero-content{padding:0 1.5rem 5rem;}
+  .ops-ring{display:none;}
+  .f-row{grid-template-columns:1fr;}
+  .orb-stage,.orb-info{display:none;}
+  .orb-mob{display:grid;}
+  .adv-head{margin-bottom:0;}
+}
+@media(max-width:600px){
+  .stats-grid{grid-template-columns:repeat(2,1fr);}
+  .hse-grid{grid-template-columns:1fr;}
+  .foot-grid{grid-template-columns:1fr;}
+  .section,.svc-section,.ops-section,.adv-section,.hse-section,.prod-section,.contact-section{padding:70px 0;}
+  .op-items{grid-template-columns:1fr 1fr;}
+  .orb-mob{grid-template-columns:1fr;}
+  .prod-scroll{flex-direction:column;overflow-x:visible;}
+  .prod-card{flex:none;width:100%;}
+  .cta-inner{flex-direction:column;align-items:flex-start;}
+}
+@media(prefers-reduced-motion:reduce){
+  .rv,.rl,.rr,.rtl,.rtr,.rbl,.rbr,.rz,.sfl,.sfb,.sfr{transition:none!important;animation:none!important;opacity:1!important;transform:none!important;}
+}
+</style>
+</head>
+<body>
+
+<!-- ════ NAVBAR ════ -->
+<nav class="navbar" id="navbar">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">CE</div>
+    <div class="nav-logo-text">Capital Energy<small>H2S &amp; Air Loop Safety</small></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#overview">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#operations">Operations</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Get In Touch</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ════ HERO ════ -->
+<section class="hero" id="hero">
+  <div class="hero-media">
+    <video autoplay muted loop playsinline id="heroVideo">
+      <source src="video1.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Since 1999 · UAE's Premier H2S Safety Partner</div>
+    <h1 class="hero-title">Safety First.<em>Always.</em></h1>
+    <p class="hero-sub">Capital Energy delivers world-class Air Loop &amp; H2S Safety solutions to the petroleum industry — onshore, offshore, and everywhere in between.</p>
+    <div class="hero-actions">
+      <a href="#services" class="btn-p">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>Explore Services
+      </a>
+      <a href="#overview" class="btn-o">Our Story</a>
+    </div>
+  </div>
+  <a href="#overview" class="hero-scroll">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>Scroll
+  </a>
+</section>
+
+<!-- ════ TICKER ════ -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">H2S Safety Solutions</span><span class="ticker-item">Air Loop Systems</span>
+    <span class="ticker-item">Gas Detection</span><span class="ticker-item">Breathing Air Packages</span>
+    <span class="ticker-item">HSE Consulting</span><span class="ticker-item">Offshore &amp; Onshore</span>
+    <span class="ticker-item">Equipment Rental</span><span class="ticker-item">Safety Training</span>
+    <span class="ticker-item">H2S Safety Solutions</span><span class="ticker-item">Air Loop Systems</span>
+    <span class="ticker-item">Gas Detection</span><span class="ticker-item">Breathing Air Packages</span>
+    <span class="ticker-item">HSE Consulting</span><span class="ticker-item">Offshore &amp; Onshore</span>
+    <span class="ticker-item">Equipment Rental</span><span class="ticker-item">Safety Training</span>
+  </div>
+</div>
+
+<!-- ════ OVERVIEW ════ -->
+<section class="section overview" id="overview">
+  <div class="container">
+    <div class="ov-grid">
+      <div class="rl">
+        <div class="ov-img">
+          <div class="ov-img-box"><img src="image1.png" alt="Capital Energy team"/></div>
+          <div class="ov-badge"><strong>25+</strong><span>Years of Excellence</span></div>
+        </div>
+      </div>
+      <div class="rr">
+        <p class="lbl">Company Overview</p>
+        <h2 class="ttl">Supporting the <span>Petroleum Industry</span> Since 1999</h2>
+        <div class="divider"></div>
+        <div class="ov-text">
+          <p>Capital Energy has long been committed to supporting the petroleum industry by addressing health and safety concerns across various operational aspects. We established our Air Loop &amp; H2S Safety business unit to meet the industry's most stringent safety requirements.</p>
+          <p>Since inception in 1999, this unit has grown into one of Capital Energy's key areas of expertise — particularly across the UAE — providing high-quality products, comprehensive services, and after-sales support for onshore and offshore operations.</p>
+        </div>
+        <div class="ov-feat rv"><div class="ov-feat-ico">🔧</div><div><h4>Expert Service Center</h4><p>Skilled technicians prepare and assemble Air Loop packages for timely delivery to client sites.</p></div></div>
+        <div class="ov-feat rv d1"><div class="ov-feat-ico">🛡️</div><div><h4>Full Inventory Support</h4><p>Extensive spare parts stock ensuring complete backup for all service contracts and sales needs.</p></div></div>
+        <div class="ov-feat rv d2"><div class="ov-feat-ico">📡</div><div><h4>Onshore &amp; Offshore Coverage</h4><p>Catering to drilling, production, workover rigs, and barges across all operational environments.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ STATS ════ -->
+<div class="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item"><div class="stat-num"><span class="counter" data-target="25">0</span><span class="stat-unit">+</span></div><div class="stat-label">Years of Experience</div></div>
+      <div class="stat-item"><div class="stat-num"><span class="counter" data-target="500">0</span><span class="stat-unit">+</span></div><div class="stat-label">Projects Completed</div></div>
+      <div class="stat-item"><div class="stat-num"><span class="counter" data-target="200">0</span><span class="stat-unit">+</span></div><div class="stat-label">Clients Served</div></div>
+      <div class="stat-item"><div class="stat-num"><span class="counter" data-target="15">0</span><span class="stat-unit">+</span></div><div class="stat-label">Product Categories</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- dark→light bridge -->
+<div class="bridge"></div>
+
+<!-- ════ SERVICES — AFAQ LAYOUT ════ -->
+<section class="svc-section" id="services">
+  <div class="container">
+    <div class="svc-layout">
+
+      <!-- LEFT sticky col -->
+      <div class="svc-left rl">
+        <p class="lbl-dk">What We Do</p>
+        <h2 class="ttl-dk">Our Core <span>Services</span></h2>
+        <div class="divider"></div>
+        <p class="intro">Capital Energy Solution specializes in H2S safety consulting, site safety officers, safety equipment rentals, and training — covering every aspect of petroleum industry operations, onshore and offshore.</p>
+        <a href="#contact" class="btn-dk" style="margin-top:.25rem">Request a Quote →</a>
+      </div>
+
+      <!-- RIGHT 2-col grid -->
+      <div class="rr">
+        <div class="svc-items">
+
+          <div class="svc-item rv d1">
+            <div class="svc-ico">💨</div>
+            <div><h4>Air Loop &amp; H2S Safety</h4><p>Containerized breathing air packages, SCBA apparatus supply &amp; service for drilling rigs and offshore facilities.</p></div>
+          </div>
+          <div class="svc-item rv d2">
+            <div class="svc-ico">🔍</div>
+            <div><h4>Gas Detection</h4><p>Fixed, wireless and portable gas detection systems with calibration, auto-shutdown integration and service support.</p></div>
+          </div>
+          <div class="svc-item rv d2">
+            <div class="svc-ico">🛡️</div>
+            <div><h4>Safety Consulting</h4><p>On-site emergency response, safety audits, hydrogen sulfide supervision, confined space oversight and contingency planning.</p></div>
+          </div>
+          <div class="svc-item rv d3">
+            <div class="svc-ico">📦</div>
+            <div><h4>Equipment Rental</h4><p>Open &amp; containerized air-loop systems, Air Pack 10/15/30 min, breathing air compressors, and more.</p></div>
+          </div>
+          <div class="svc-item rv d3">
+            <div class="svc-ico">🌊</div>
+            <div><h4>Subsea &amp; Offshore</h4><p>Subsea engineering, offshore rig management, e-mustering &amp; e-tracking, blast-resistant shelters and red zone vehicles.</p></div>
+          </div>
+          <div class="svc-item rv d4">
+            <div class="svc-ico">🔬</div>
+            <div><h4>NDT &amp; Maintenance</h4><p>Well intervention, production monitoring, hydrotest of cylinders, SCBA inspection, emergency repairs and routine upkeep.</p></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ OPERATIONS — inward animations ════ -->
+<section class="ops-section" id="operations">
+  <div class="container">
+    <div class="ops-grid">
+
+      <div class="ops-text">
+        <p class="lbl-dk rv">Where We Work</p>
+        <h2 class="ttl-dk rv d1">Area of <span>Operations</span></h2>
+        <div class="divider rv d2"></div>
+        <p class="rv d2">Capital Energy Solution operates across the full spectrum of petroleum industry facilities — providing H2S safety, air loop services, and consulting wherever the industry demands it.</p>
+        <div class="op-items">
+          <div class="op-card rtl"><div class="op-card-ico">🏭</div><h4>Oil Center</h4></div>
+          <div class="op-card rtr"><div class="op-card-ico">⚙️</div><h4>GOSP</h4></div>
+          <div class="op-card rbl"><div class="op-card-ico">🛢️</div><h4>Drilling &amp; Exploration Rigs</h4></div>
+          <div class="op-card rbr"><div class="op-card-ico">✅</div><h4>Well Completion</h4></div>
+        </div>
+      </div>
+
+      <div class="ops-img-wrap rr">
+        <div class="ops-ring"></div>
+        <div class="ops-img-box"><img src="image2.png" alt="Operations field"/></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════ ADVANTAGE — ORBITAL TIMELINE ════ -->
+<section class="adv-section" id="advantage">
+  <div class="container">
+
+    <div class="adv-head rv">
+      <p class="lbl-dk">Why Choose Us</p>
+      <h2 class="ttl-dk">Competitive <span>Advantage</span></h2>
+      <div class="divider-c"></div>
+      <p class="sub">Click any orbiting node to explore what sets Capital Energy apart — or simply watch as our core pillars orbit around 25+ years of expertise.</p>
+    </div>
+
+    <!-- DESKTOP orbital -->
+    <div class="orb-outer">
+      <div class="orb-stage" id="orbStage">
+        <div class="orb-r1"></div>
+        <div class="orb-r2"></div>
+        <div class="orb-pulse"></div>
+        <div class="orb-hub" id="orbHub"><span>CE</span><small>1999</small></div>
+
+        <div class="orb-node" data-id="0"
+          data-title="Expertise"
+          data-desc="Skilled professionals with decades of hands-on experience in oil and gas safety operations across the UAE and broader Middle East region.">
+          <div class="orb-dot">⭐</div><div class="orb-lbl">Expertise</div>
+        </div>
+        <div class="orb-node" data-id="1"
+          data-title="Technology Integration"
+          data-desc="Leveraging AI, IoT, and automation to optimize service delivery, reduce response times, and minimize operational costs across all client engagements.">
+          <div class="orb-dot">🤖</div><div class="orb-lbl">Technology</div>
+        </div>
+        <div class="orb-node" data-id="2"
+          data-title="Environmental Focus"
+          data-desc="Strong emphasis on sustainability and full regulatory compliance with UAE environmental and safety standards — protecting people and the environment.">
+          <div class="orb-dot">🌿</div><div class="orb-lbl">Environment</div>
+        </div>
+        <div class="orb-node" data-id="3"
+          data-title="Customization"
+          data-desc="Tailored end-to-end solutions designed for both small-scale projects and large industrial operations — one size never fits all in safety.">
+          <div class="orb-dot">🎯</div><div class="orb-lbl">Customization</div>
+        </div>
+      </div>
+
+      <div class="orb-info" id="orbInfo">
+        <button class="orb-close" id="orbClose">✕</button>
+        <div class="orb-info-title" id="orbTitle"></div>
+        <div class="orb-info-bar"></div>
+        <div class="orb-info-desc" id="orbDesc"></div>
+      </div>
+    </div>
+
+    <!-- MOBILE card grid -->
+    <div class="orb-mob">
+      <div class="orb-mob-card rv d1"><div class="orb-mob-ico">⭐</div><h4>Expertise</h4><p>Skilled professionals with decades of hands-on experience in oil and gas safety operations.</p></div>
+      <div class="orb-mob-card rv d2"><div class="orb-mob-ico">🤖</div><h4>Technology</h4><p>AI, IoT, and automation to optimize service delivery and reduce operational costs.</p></div>
+      <div class="orb-mob-card rv d3"><div class="orb-mob-ico">🌿</div><h4>Environment</h4><p>Emphasis on sustainability and full regulatory compliance with UAE safety standards.</p></div>
+      <div class="orb-mob-card rv d4"><div class="orb-mob-ico">🎯</div><h4>Customization</h4><p>Tailored solutions for both small-scale projects and large industrial operations.</p></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════ HSE — TEAM SHOWCASE ════ -->
+<section class="hse-section" id="hse">
+  <div class="container">
+
+    <div class="hse-head rv">
+      <p class="lbl-dk">Health, Safety &amp; Environment</p>
+      <h2 class="ttl-dk">HSE <span>Services</span></h2>
+      <div class="divider-c"></div>
+    </div>
+
+    <div class="hse-grid">
+      <!-- Row 1: left · center · right -->
+      <div class="sc-card sfl">
+        <div class="sc-top"><div class="sc-ico">📚</div></div>
+        <div class="sc-body"><h3>Training &amp; Education</h3><p>Equipping your employees with the knowledge to safely and smoothly carry out day-to-day critical tasks on site.</p></div>
+      </div>
+      <div class="sc-card sfb">
+        <div class="sc-top"><div class="sc-ico">🔎</div></div>
+        <div class="sc-body"><h3>Safety Inspection &amp; Audit</h3><p>Identifying workplace hazards and assessing risks to your company, employees, and environment — then mitigating them to accepted standards.</p></div>
+      </div>
+      <div class="sc-card sfr">
+        <div class="sc-top"><div class="sc-ico">📌</div></div>
+        <div class="sc-body"><h3>Accident Investigation</h3><p>Root-cause analysis of every incident to understand contributing factors and prevent recurrence across all operations.</p></div>
+      </div>
+      <!-- Row 2 -->
+      <div class="sc-card sfl d2">
+        <div class="sc-top"><div class="sc-ico">📋</div></div>
+        <div class="sc-body"><h3>Policy Making</h3><p>Helping clients achieve safety goals by implementing HSE policies as a baseline framework for everyone to work safely.</p></div>
+      </div>
+      <div class="sc-card sfb d2">
+        <div class="sc-top"><div class="sc-ico">📊</div></div>
+        <div class="sc-body"><h3>Safety Studies</h3><p>Data gathering, detailed analysis, monitoring and problem-solving to monitor the effectiveness of your HSE programs.</p></div>
+      </div>
+      <div class="sc-card sfr d2">
+        <div class="sc-top"><div class="sc-ico">🌡️</div></div>
+        <div class="sc-body"><h3>Work Environment Monitoring</h3><p>Assisting companies in compliance with environmental regulations, labor laws, and their own internal safety standards.</p></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════ PRODUCTS ════ -->
+<section class="prod-section" id="products">
+  <div class="container">
+    <div class="prod-head rv">
+      <div><p class="lbl-dk">Distribution Portfolio</p><h2 class="ttl-dk">Key <span>Products</span></h2></div>
+      <a href="#contact" class="btn-dk">Request Catalogue</a>
+    </div>
+    <div class="prod-scroll">
+      <div class="prod-card rv d1"><div class="prod-card-img"><img src="image3.png" alt="Air Loop"/></div><div class="prod-card-body"><h3>Air Loop Packages</h3><p>Containerized and open Air Loop systems for onshore and offshore operations.</p></div></div>
+      <div class="prod-card rv d2"><div class="prod-card-img"><img src="image4.png" alt="SCBA"/></div><div class="prod-card-body"><h3>SCBA &amp; EEBD Apparatus</h3><p>Breathing apparatus and emergency escape devices supply, calibration &amp; service.</p></div></div>
+      <div class="prod-card rv d3"><div class="prod-card-img"><img src="image5.png" alt="Gas Detection"/></div><div class="prod-card-body"><h3>Gas Detection Systems</h3><p>Fixed, wireless and portable detection solutions with full calibration support.</p></div></div>
+      <div class="prod-card rv d4"><div class="prod-card-img"><img src="image6.png" alt="Bauer Compressors"/></div><div class="prod-card-body"><h3>Bauer Air Compressors</h3><p>Premium breathing air compressor supply, installation, and ongoing maintenance.</p></div></div>
+      <div class="prod-card rv d5"><div class="prod-card-img"><img src="image7.png" alt="Safe Havens"/></div><div class="prod-card-body"><h3>Safe Havens &amp; Shelters</h3><p>Blast-resistant shelters and safe havens for high-hazard operational environments.</p></div></div>
+      <div class="prod-card rv d6"><div class="prod-card-img"><img src="image8.png" alt="Red Zone Vehicles"/></div><div class="prod-card-body"><h3>Red Zone Vehicles</h3><p>Vehicles equipped with central breathing air &amp; gas detection auto shutdown systems.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ CTA BAND ════ -->
+<div class="cta-band">
+  <div class="container">
+    <div class="cta-inner">
+      <div class="rl"><h2>Ready to Secure Your Operations?</h2><p>Talk to our H2S safety experts today — fast response, proven solutions.</p></div>
+      <a href="#contact" class="btn-w rr">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>Contact Us Now
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ════ CONTACT ════ -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+
+      <div class="rl">
+        <p class="lbl-dk">Get In Touch</p>
+        <h2 class="ttl-dk">How Can We <span>Help You?</span></h2>
+        <div class="divider"></div>
+        <p class="contact-left">Whether you need equipment, consulting, or an emergency safety solution — our team is ready to respond. Reach out and we'll get back to you promptly.</p>
+        <div class="c-detail"><div class="c-ico">📍</div><div><h4>Location</h4><p>United Arab Emirates</p></div></div>
+        <div class="c-detail"><div class="c-ico">📞</div><div><h4>Phone</h4><p><!-- ADD PHONE --></p></div></div>
+        <div class="c-detail"><div class="c-ico">✉️</div><div><h4>Email</h4><p><!-- ADD EMAIL --></p></div></div>
+        <div class="c-map">Google Maps Embed</div>
+      </div>
+
+      <div class="rr">
+        <form class="c-form" onsubmit="handleForm(event)">
+          <div class="f-row">
+            <div class="f-grp"><label>Full Name</label><input type="text" placeholder="John Smith" required/></div>
+            <div class="f-grp"><label>Company</label><input type="text" placeholder="Your Company"/></div>
+          </div>
+          <div class="f-row">
+            <div class="f-grp"><label>Email</label><input type="email" placeholder="you@company.com" required/></div>
+            <div class="f-grp"><label>Phone</label><input type="tel" placeholder="+971 xx xxx xxxx"/></div>
+          </div>
+          <div class="f-grp">
+            <label>Service Interested In</label>
+            <select>
+              <option value="">Select a service</option>
+              <option>H2S / Air Loop Safety</option><option>Gas Detection Systems</option>
+              <option>Safety Consulting</option><option>Equipment Rental</option>
+              <option>Subsea &amp; Offshore</option><option>NDT &amp; Maintenance</option>
+              <option>HSE Services</option><option>Other</option>
+            </select>
+          </div>
+          <div class="f-grp"><label>Message</label><textarea rows="5" placeholder="Describe your project or requirement…"></textarea></div>
+          <button type="submit" class="btn-dk" style="align-self:flex-start">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>Send Message
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════ FOOTER ════ -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="#" class="nav-logo" style="display:inline-flex;margin-bottom:.5rem;">
+          <div class="nav-logo-icon">CE</div>
+          <div class="nav-logo-text">Capital Energy<small>H2S &amp; Air Loop Safety</small></div>
+        </a>
+        <p>As a Safety Service Company, we prioritize Health, Safety, Environmental, and Quality goals. The ONE-STOP solution for all Environmental Health and Safety needs.</p>
+        <div class="foot-soc">
+          <a href="#" aria-label="LinkedIn">in</a><a href="#" aria-label="Twitter">𝕏</a>
+          <a href="#" aria-label="Facebook">f</a><a href="#" aria-label="Instagram">ig</a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#overview">About Us</a></li><li><a href="#services">Services</a></li>
+          <li><a href="#operations">Operations</a></li><li><a href="#products">Products</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Air Loop &amp; H2S</a></li><li><a href="#services">Gas Detection</a></li>
+          <li><a href="#services">Safety Consulting</a></li><li><a href="#services">Equipment Rental</a></li>
+          <li><a href="#hse">HSE Services</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Newsletter</h4>
+        <p class="foot-nl">Stay updated on our latest products, services, and safety insights.</p>
+        <div class="nl-form">
+          <input type="email" placeholder="Your email address"/>
+          <button type="button" aria-label="Subscribe">→</button>
+        </div>
+        <h4 style="margin-top:1.7rem;">Download Brochure</h4>
+        <a href="#" class="btn-o" style="font-size:.76rem;padding:.52rem 1.1rem;margin-top:.6rem;display:inline-flex;">↓ Company Profile PDF</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2025 Capital Energy. All rights reserved.</span>
+      <span><a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="#">Terms of Use</a></span>
+      <span>UAE · KSA · Oman · Qatar</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ════ JAVASCRIPT ════ -->
+<script>
+/* ── Navbar scroll ── */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+}, {passive:true});
+
+/* ── Universal scroll reveal — all screen sizes ── */
+const rvEls = document.querySelectorAll('.rv,.rl,.rr,.rtl,.rtr,.rbl,.rbr,.rz,.sfl,.sfb,.sfr');
+const rvObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('on'); rvObs.unobserve(e.target); }
+  });
+}, { threshold: 0.07, rootMargin: '0px 0px -30px 0px' });
+rvEls.forEach(el => rvObs.observe(el));
+
+/* ── Counters ── */
+const counters = document.querySelectorAll('.counter');
+new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const t = +e.target.dataset.target; let c = 0; const s = t / 60;
+      const tmr = setInterval(() => {
+        c = Math.min(c + s, t); e.target.textContent = Math.floor(c);
+        if (c >= t) clearInterval(tmr);
+      }, 20);
+      e.target._obs.unobserve(e.target);
+    }
+  });
+}, {threshold:.5}).observe && counters.forEach(c => {
+  c._obs = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) {
+      const t = +entries[0].target.dataset.target; let cur = 0; const s = t/60;
+      const tmr = setInterval(() => {
+        cur = Math.min(cur+s, t); entries[0].target.textContent = Math.floor(cur);
+        if (cur >= t) clearInterval(tmr);
+      }, 20);
+      c._obs.unobserve(entries[0].target);
+    }
+  }, {threshold:.5});
+  c._obs.observe(c);
+});
+
+/* ── Hero video parallax zoom on scroll ── */
+const heroVid = document.getElementById('heroVideo');
+window.addEventListener('scroll', () => {
+  if (!heroVid) return;
+  const s = Math.min(1 + window.scrollY * 0.00028, 1.1);
+  heroVid.style.transform = `scale(${s})`;
+}, {passive:true});
+
+/* ── Smooth scroll ── */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href').slice(1);
+    const el = document.getElementById(id);
+    if (el) { e.preventDefault(); window.scrollTo({top: el.offsetTop - 72, behavior:'smooth'}); }
+  });
+});
+
+/* ── Form handler ── */
+function handleForm(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('button[type=submit]');
+  const orig = btn.innerHTML;
+  btn.textContent = '✓ Message Sent!'; btn.style.background = '#0a6a6a';
+  setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; }, 3000);
+}
+
+/* ══════════════════════════════════════════
+   ORBITAL TIMELINE  (desktop only — >900px)
+══════════════════════════════════════════ */
+(function() {
+  if (window.innerWidth <= 900) return;
+
+  const stage   = document.getElementById('orbStage');
+  const info    = document.getElementById('orbInfo');
+  const titleEl = document.getElementById('orbTitle');
+  const descEl  = document.getElementById('orbDesc');
+  const closeBtn= document.getElementById('orbClose');
+  const hub     = document.getElementById('orbHub');
+  if (!stage) return;
+
+  const nodes = Array.from(stage.querySelectorAll('.orb-node'));
+  const RADIUS = 175;
+  let angle = 0, spinning = true, activeId = null, raf = null;
+
+  function pos(i, total, a) {
+    const theta = ((i / total) * 360 + a) * (Math.PI / 180);
+    return {
+      x: RADIUS * Math.cos(theta),
+      y: RADIUS * Math.sin(theta),
+      opacity: Math.max(.35, .35 + .65 * ((1 + Math.sin(theta)) / 2)),
+      scale:   Math.max(.72, .72 + .28 * ((1 + Math.cos(theta)) / 2)),
+      z:       Math.round(5 + 12 * Math.cos(theta))
+    };
+  }
+
+  function draw() {
+    nodes.forEach((n, i) => {
+      const p = pos(i, nodes.length, angle);
+      const isAct = n.dataset.id === activeId;
+      n.style.transform = `translate(calc(-50% + ${p.x}px), calc(-50% + ${p.y}px)) scale(${isAct ? 1.15 : p.scale})`;
+      n.style.opacity   = isAct ? '1' : p.opacity;
+      n.style.zIndex    = isAct ? '50' : p.z;
+    });
+  }
+
+  function loop() {
+    if (spinning) { angle = (angle + 0.3) % 360; draw(); }
+    raf = requestAnimationFrame(loop);
+  }
+
+  function open(node) {
+    const id = node.dataset.id;
+    if (activeId === id) { close(); return; }
+    activeId = id; spinning = false;
+    nodes.forEach(n => n.classList.toggle('act', n.dataset.id === id));
+    titleEl.textContent = node.dataset.title;
+    descEl.textContent  = node.dataset.desc;
+    info.classList.add('act');
+    // rotate clicked node to right side (0°)
+    const idx = nodes.indexOf(node);
+    angle = -(idx / nodes.length) * 360;
+    draw();
+  }
+
+  function close() {
+    activeId = null; spinning = true;
+    nodes.forEach(n => n.classList.remove('act'));
+    info.classList.remove('act');
+  }
+
+  nodes.forEach(n => n.addEventListener('click', e => { e.stopPropagation(); open(n); }));
+  closeBtn.addEventListener('click', e => { e.stopPropagation(); close(); });
+  hub.addEventListener('click', close);
+
+  // Start only when in view
+  new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting && !raf) loop();
+    else if (!entries[0].isIntersecting && raf) { cancelAnimationFrame(raf); raf = null; }
+  }, {threshold:.1}).observe(stage);
+})();
+</script>
+
+</body>
+</html>
